@@ -6,19 +6,32 @@ import { LinearGradient } from 'expo-linear-gradient'
 import StartGameScreen from './screens/StartGameScreen'
 import GameScreen from './screens/GameScreen'
 import colors from './constants/colors'
+import GameOverScreen from './screens/GameOverScreen'
 
 export default function App () {
   const [userNumber, setUserNumber] = useState()
+  const [isGameOver, setIsGameOver] = useState(true)
 
   // 5. Function for switching to GameScreen if confirmed number is valid
   function onConfirmHandler (pickedNumber) {
     setUserNumber(pickedNumber)
+    setIsGameOver(false)
+  }
+
+  function gameOverHandler () {
+    setIsGameOver(true)
   }
 
   let screen = <StartGameScreen onConfirmHandler={onConfirmHandler} />
 
   if (userNumber) {
-    screen = <GameScreen />
+    screen = (
+      <GameScreen userNumber={userNumber} gameOverHandler={gameOverHandler} />
+    )
+  }
+
+  if (isGameOver && userNumber) {
+    screen = <GameOverScreen />
   }
 
   return (
