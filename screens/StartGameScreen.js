@@ -80,10 +80,11 @@ const styles = StyleSheet.create({
   },
 
   instructionText: {
+    fontFamily: 'nato-sans',
     color: colors.secondary,
     letterSpacing: 1,
     textTransform: 'capitalize',
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     fontSize: 16,
     textAlign: 'center'
   },
